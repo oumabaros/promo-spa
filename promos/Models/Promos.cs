@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace promos.Models
 {
+    //Promos model
     public class Promos
     {
         public int Id { get; set; }

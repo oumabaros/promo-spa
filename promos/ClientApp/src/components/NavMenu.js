@@ -5,6 +5,7 @@ import { LoginMenu } from './api-authorization/LoginMenu';
 import 'bootstrap/dist/css/bootstrap.css';
 import './NavMenu.css';
 
+//navigation component for top menu containg Login/Logout menus
 export class NavMenu extends Component {
     static displayName = NavMenu.name;
 

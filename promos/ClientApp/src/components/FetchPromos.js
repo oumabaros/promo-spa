@@ -8,7 +8,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 export class FetchPromos extends Component {
     static displayName = FetchPromos.name;
-
+    //Initialiaze 
     constructor(props) {
         super(props);
         this.state = {
@@ -21,40 +21,53 @@ export class FetchPromos extends Component {
     }
 
     componentDidMount() {
+        //populate promos[]
         this.populatePromosData();
     }
     searchSpace = (event) => {
+        //set keyword with value(s) in searchbox
         let keyword = event.target.value;
         this.setState({ search: keyword });
     };
+    //function to toggle Status between True and False
     activateBonus = async (e) => {
+        //set updatedProms to current values in promos[]
         const updatedProms = [...this.state.promos];
-
+        //set status of clicked button to true or false esle return current value unset
         updatedProms.map((item) =>
             item.Id.toString() === e.target.id
                 ? Object.assign(item, { Status: !item.Status })
                 : item,
 
         );
+        //set promos[] to udatedProms[] after click of 'Set Bonus' button
         this.setState({ promos: updatedProms });
+        //log updated values of promos[] in console to confirm changes
         console.log([...this.state.promos]);
     };
+    //function to reset element values. sets 'search' to null and re-render screen
     handleSubmit = (e) => {
         e.preventDefault();
+        //get value in search box
         document.getElementById('txtSearch').value = '';
+        //set search variable to null
         this.setState({ search: null });
     };
+    //function to check if copy was succesful or failed
     copyItem = () => {
         this.setState({ copied: true });
     };
 
+    //renderr screen elements with values
     static renderPromos(promos,search,searchSpace,hSubmit,aBonus,copyItem) {
                   
-
+        //if promos[] is null, display 'No Promos'
         if (promos == null || promos.length === 0) {
             return <h5>No Promos</h5>;
         }
+        //map promos[] array
         const items = promos
+            //filter array with value in search
             .filter((data) => {
                 if (search == null) return data;
                 else if (
@@ -66,6 +79,7 @@ export class FetchPromos extends Component {
                     return data;
                 }
             })
+            //return filtered data and populate elemnts
             .map((p) => {
                 return (
                     <div key={p.Id}>
@@ -161,7 +175,7 @@ export class FetchPromos extends Component {
             </div>
         );
     }
-
+    //render/display items by calling renderPromos() above
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
@@ -174,7 +188,7 @@ export class FetchPromos extends Component {
             </div>
         );
     }
-
+    //fill prmos[] with data after checking for authorization
     async populatePromosData() {
         const token = await authService.getAccessToken();
         const response = await fetch('api/promos/getpromos', {

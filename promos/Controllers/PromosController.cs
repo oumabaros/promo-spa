@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace promo.Controllers
 {
+    //Controller to load promos
     [Route("api/[controller]/[action]")]
     //[Authorize]
     [ApiController]

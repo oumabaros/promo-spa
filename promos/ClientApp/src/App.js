@@ -5,11 +5,13 @@ import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizat
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
 import { FetchPromos } from './components/FetchPromos';
 
+//main component
 export default class App extends Component {
   static displayName = App.name;
 
   render () {
-    return (
+      return (
+        //configure routes and authorizations
         <Layout>
             <Route exact path='/' component={FetchPromos} />
             <Route path='/promos/edit/:promoid' component={FetchPromos} /> 

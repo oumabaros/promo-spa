@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+//topbar component for the top region of main page
 export class TopBarMenu extends Component {
   render() {
     return (
