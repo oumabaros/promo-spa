@@ -12,6 +12,7 @@ export default class App extends Component {
     return (
         <Layout>
             <Route exact path='/' component={FetchPromos} />
+            <Route path='/promos/edit/:promoid' component={FetchPromos} /> 
             <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
       </Layout>
     );

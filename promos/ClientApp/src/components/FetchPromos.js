@@ -29,13 +29,15 @@ export class FetchPromos extends Component {
     };
     activateBonus = async (e) => {
         const updatedProms = [...this.state.promos];
-            updatedProms.map((item) =>
+
+        updatedProms.map((item) =>
             item.Id.toString() === e.target.id
                 ? Object.assign(item, { Status: !item.Status })
                 : item,
+
         );
         this.setState({ promos: updatedProms });
-                
+        console.log([...this.state.promos]);
     };
     handleSubmit = (e) => {
         e.preventDefault();
